@@ -34,6 +34,28 @@ h1 {
   align-items: center;
   margin-bottom: 10px;
 }
+.top-bar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.lang-select {
+  background: #1a1a2e;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 0.8em;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: center;
+  width: 42px;
+}
+.lang-select:focus { outline: none; border-color: #e94560; }
 .btn-reset {
   background: none;
   border: 1px solid #333;

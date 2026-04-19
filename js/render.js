@@ -148,7 +148,7 @@ function renderClues(containerId, showAnswers = false) {
   container.innerHTML = "";
 
   ["H", "V"].forEach(dir => {
-    const label = dir === "H" ? "HORITZONTALS" : "VERTICALS";
+    const label = dir === "H" ? t("cluesHorizontal") : t("cluesVertical");
     const h3 = document.createElement("h3");
     h3.textContent = label;
     container.appendChild(h3);
@@ -162,25 +162,24 @@ function renderClues(containerId, showAnswers = false) {
       numSpan.className = "clue-num-label";
       numSpan.textContent = `${c.num}.`;
       li.appendChild(numSpan);
-      li.appendChild(document.createTextNode(c.clue));
+      li.appendChild(document.createTextNode(getClueText(c)));
 
       // Hint: guest who knows the answer
       if (c.hint) {
+        const hintStr = getClueHint(c);
         if (showAnswers) {
-          // Admin mode: show hint directly, no button
           const hintText = document.createElement("span");
           hintText.className = "hint-text hint-visible";
-          hintText.textContent = " — " + c.hint;
+          hintText.textContent = " — " + hintStr;
           li.appendChild(hintText);
         } else {
-          // Player mode: magnifying glass button to reveal
           const hintBtn = document.createElement("button");
           hintBtn.className = "hint-btn";
           hintBtn.textContent = "🔍";
-          hintBtn.title = "Pista: qui sap la resposta?";
+          hintBtn.title = hintStr;
           const hintText = document.createElement("span");
           hintText.className = "hint-text";
-          hintText.textContent = c.hint;
+          hintText.textContent = hintStr;
           hintBtn.addEventListener("click", () => {
             hintText.classList.toggle("hint-visible");
           });

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="admin-banner">MODE ORGANITZADORS</div>
+<div class="admin-banner" data-i18n="adminBanner">MODE ORGANITZADORS</div>
 
 <!-- Lightbox (desktop) -->
 <div class="lightbox-overlay" id="lightbox">
@@ -27,13 +27,19 @@
   </div>
 </div>
 
-<!-- Top bar: title + reset -->
+<!-- Top bar: title + lang + reset -->
 <div class="top-bar">
   <div>
-    <h1>ON ÉS EL SEATING PLAN?</h1>
-    <p class="subtitle">Casament Xavier & Meritxell · 25 d'abril de 2026</p>
+    <h1 data-i18n="title">ON ÉS EL SEATING PLAN?</h1>
+    <p class="subtitle" data-i18n="subtitle">Casament Xavier & Meritxell · 25 d'abril de 2026</p>
   </div>
-  <button class="btn-reset" onclick="showResetModal()" title="Tornar a començar">↺</button>
+  <div class="top-bar-buttons">
+    <select class="lang-select" id="lang-select" title="Idioma">
+      <option value="ca">CA</option>
+      <option value="es">ES</option>
+    </select>
+    <button class="btn-reset" onclick="showResetModal()" title="Tornar a començar">↺</button>
+  </div>
 </div>
 
 <!-- Progress dots -->
@@ -71,9 +77,9 @@
 <!-- ============================================================ -->
 <section class="game-section" id="step-1">
   <div class="section-header">
-    <h2>Resoleu els mots encreuats</h2>
+    <h2 data-i18n="crosswordTitle">Resoleu els mots encreuats</h2>
   </div>
-  <p class="section-intro">Fixeu-vos bé en tots els detalls.</p>
+  <p class="section-intro" data-i18n="crosswordIntro">Fixeu-vos bé en tots els detalls.</p>
 
   <div class="controls admin-only">
     <button class="btn" id="btn-toggle-solution" onclick="toggleSolution()">Veure com a jugador</button>
@@ -84,9 +90,9 @@
   </div>
 
   <div class="legend">
-    <div class="legend-item"><div class="legend-swatch green"></div><span>Verd<span class="admin-only" style="display:inline"> (Mel) = 3</span></span></div>
-    <div class="legend-item"><div class="legend-swatch blue"></div><span>Blau<span class="admin-only" style="display:inline"> (Bruna) = 9</span></span></div>
-    <div class="legend-item"><div class="legend-swatch red"></div><span>Vermell<span class="admin-only" style="display:inline"> (Brutus) = 8</span></span></div>
+    <div class="legend-item"><div class="legend-swatch green"></div><span data-i18n="legendGreen">Verd</span><span class="admin-only" style="display:inline"> (Mel) = 3</span></div>
+    <div class="legend-item"><div class="legend-swatch blue"></div><span data-i18n="legendBlue">Blau</span><span class="admin-only" style="display:inline"> (Bruna) = 9</span></div>
+    <div class="legend-item"><div class="legend-swatch red"></div><span data-i18n="legendRed">Vermell</span><span class="admin-only" style="display:inline"> (Brutus) = 8</span></div>
   </div>
 
   <div class="clues-section" id="clues-container"></div>
@@ -102,9 +108,9 @@
 <!-- ============================================================ -->
 <section class="game-section" id="step-2">
   <div class="section-header">
-    <h2>Càmeres de seguretat</h2>
+    <h2 data-i18n="camerasTitle">Càmeres de seguretat</h2>
   </div>
-  <p class="section-intro">Les càmeres del recinte han captat moviment sospitós la nit del 24 d'abril...</p>
+  <p class="section-intro" data-i18n="camerasIntro">Les càmeres del recinte han captat moviment sospitós la nit del 24 d'abril...</p>
 
   <div class="cameras-grid">
     <!-- UI order SHUFFLED — NO cronològic! -->
@@ -146,7 +152,7 @@
 <section class="game-section" id="step-3">
   <div class="step-3-content" id="step-3-content">
     <div class="section-header">
-      <h2>L'últim pas</h2>
+      <h2 data-i18n="lastStepTitle">L'últim pas</h2>
     </div>
 
     <div class="camera-card" style="max-width:320px;width:100%;">
@@ -154,14 +160,14 @@
     </div>
 
     <div class="code-input-section" id="code-input-section">
-      <p class="code-input-label">Introduïu el codi:</p>
+      <p class="code-input-label" data-i18n="codeLabel">Introduïu el codi:</p>
       <div class="code-input-boxes">
         <input type="number" class="code-box" id="code-0" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
         <input type="number" class="code-box" id="code-1" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
         <input type="number" class="code-box" id="code-2" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
         <input type="number" class="code-box" id="code-3" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
       </div>
-      <button class="btn-continue" id="btn-check-code" onclick="checkCode()">Obrir 🔓</button>
+      <button class="btn-continue" id="btn-check-code" onclick="checkCode()" data-i18n="codeBtn">Obrir 🔓</button>
       <p class="code-attempts" id="code-attempts"></p>
       <p class="code-error" id="code-error"></p>
     </div>
@@ -170,9 +176,9 @@
   <!-- Lockout screen -->
   <div class="lockout-screen" id="lockout-screen" style="display:none;">
     <div class="lockout-icon">🚨</div>
-    <h2 class="lockout-title">Alarma activada!</h2>
-    <p class="lockout-text">Heu superat els 3 intents permesos.<br>El sistema de seguretat s'ha activat i ha reiniciat totes les proves.</p>
-    <button class="btn-continue" onclick="hardReset()">Tornar a començar</button>
+    <h2 class="lockout-title" data-i18n="lockoutTitle">Alarma activada!</h2>
+    <p class="lockout-text" data-i18n-html="lockoutText">Heu superat els 3 intents permesos.<br>El sistema de seguretat s'ha activat i ha reiniciat totes les proves.</p>
+    <button class="btn-continue" onclick="hardReset()" data-i18n="lockoutBtn">Tornar a començar</button>
   </div>
 
   <p class="admin-only" style="margin-top:12px; font-size:0.82em; color:#888; text-align:center;">
@@ -190,12 +196,12 @@
 <section class="game-section" id="step-4">
   <div class="victory-screen">
     <div class="victory-icon">🎉</div>
-    <h2 class="victory-title">Esteu a punt de recuperar el seating plan!!</h2>
-    <p class="victory-subtitle" style="font-size:1.1em;">Aneu cap als nuvis i tots junts, a la de 3, crideu ben fort:</p>
+    <h2 class="victory-title" data-i18n="victoryTitle">Esteu a punt de recuperar el seating plan!!</h2>
+    <p class="victory-subtitle" style="font-size:1.1em;" data-i18n="victorySubtitle">Aneu cap als nuvis i tots junts, a la de 3, crideu ben fort:</p>
     <div class="secret-word">CUQUIS</div>
     <img src="img/nuvis-final-sm.jpg" srcset="img/nuvis-final-sm.jpg 640w, img/nuvis-final-lg.jpg 1200w" sizes="(min-width: 768px) 450px, 80vw" alt="Els nuvis" class="mascots-photo" style="margin:14px auto 0;display:block;max-width:340px;">
     <style>@media(min-width:768px){.victory-screen .mascots-photo{max-width:450px!important;}}</style>
-    <p class="victory-footer">Gràcies per jugar! ❤️💍</p>
+    <p class="victory-footer" data-i18n-html="victoryFooter">Gràcies per jugar! ❤️💍</p>
   </div>
 </section>
 
@@ -253,6 +259,7 @@
   </div>
 </div>
 
+<script src="js/i18n.js"></script>
 <script src="js/data.js"></script>
 <script src="js/render.js"></script>
 <script>
@@ -262,18 +269,20 @@
   const SECRET_CODE = [8, 5, 3, 9];
   const MAX_ATTEMPTS = 3;
 
-  // Confirmation messages when advancing sections
-  const STEP_CONFIRM_MESSAGES = {
-    1: "Ja heu vist el vídeo que us han deixat els sospitosos?",
-    2: "Heu acabat els mots encreuats i sabeu què amaguen les caselles de color?",
-    3: "Us heu fixat bé en tots els detalls de les càmeres? Ja sabeu què mostren?",
-  };
-
-  // Messages shown between failed code attempts
-  const FAIL_HINT_MESSAGES = [
-    "Codi incorrecte! Segur que heu revisat bé les caselles de color i les càmeres de seguretat?",
-    "Codi incorrecte! Últim intent... Potser hauríeu de tornar a repassar les pistes anteriors.",
-  ];
+  // --- Apply language to all data-i18n elements ---
+  function applyLang() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      el.textContent = t(el.dataset.i18n);
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      el.innerHTML = t(el.dataset.i18nHtml);
+    });
+    document.querySelectorAll(".btn-continue:not([data-i18n])").forEach(b => {
+      if (!b.id) b.textContent = t("btnContinue");
+    });
+    document.getElementById("lang-select").value = getLang();
+    document.documentElement.lang = getLang();
+  }
 
   // --- Custom Modal ---
   const modalOverlay = document.getElementById("modal-overlay");
@@ -284,8 +293,8 @@
   function showModal(text, confirmLabel, cancelLabel) {
     return new Promise(resolve => {
       modalText.textContent = text;
-      modalConfirm.textContent = confirmLabel || "Endavant!";
-      modalCancel.textContent = cancelLabel || "Encara no";
+      modalConfirm.textContent = confirmLabel || t("modalConfirm");
+      modalCancel.textContent = cancelLabel || t("modalCancel");
       modalCancel.style.display = cancelLabel === null ? "none" : "inline-block";
       modalOverlay.classList.add("visible");
 
@@ -308,7 +317,7 @@
 
   // Early access gate — remove this block after the wedding
   if (!isAdmin && !params.has("early_access")) {
-    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;color:#666;font-family:system-ui;text-align:center;padding:20px;"><p style="font-size:1.2em;">Pàgina no disponible</p></div>';
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;color:#666;font-family:system-ui;text-align:center;padding:20px;"><p style="font-size:1.2em;">' + t("pageUnavailable") + '</p></div>';
     throw new Error("early_access required");
   }
   if (isAdmin) {
@@ -332,6 +341,8 @@
   viewStep = maxStep;
 
   function updateUI() {
+    applyLang();
+
     if (isAdmin) {
       document.getElementById("progress-bar").style.display = "none";
       for (let i = 0; i < TOTAL_STEPS; i++) {
@@ -365,13 +376,14 @@
     const isLockout = viewStep === 3 && attempts >= MAX_ATTEMPTS;
 
     document.querySelector(".btn-reset").style.display = isLockout ? "none" : "";
+    document.getElementById("lang-select").style.display = isLockout ? "none" : "";
     document.getElementById("progress-bar").style.display = (viewStep === 4 || isLockout) ? "none" : "flex";
 
     // Show remaining attempts
     const attemptsEl = document.getElementById("code-attempts");
     if (attemptsEl && viewStep === 3 && attempts > 0 && attempts < MAX_ATTEMPTS) {
       const remaining = MAX_ATTEMPTS - attempts;
-      attemptsEl.textContent = `Intents restants: ${remaining}`;
+      attemptsEl.textContent = t("codeAttemptsLeft")(remaining);
       attemptsEl.className = remaining === 1 ? "code-attempts warning" : "code-attempts";
     } else if (attemptsEl) {
       attemptsEl.textContent = "";
@@ -387,9 +399,9 @@
   async function goToStep(step) {
     if (step < 0 || step >= TOTAL_STEPS) return;
 
-    // Player mode: custom modal before advancing to a NEW step
-    if (!isAdmin && step > maxStep && STEP_CONFIRM_MESSAGES[step]) {
-      const ok = await showModal(STEP_CONFIRM_MESSAGES[step]);
+    const stepConfirms = { 1: "confirmStep1", 2: "confirmStep2", 3: "confirmStep3" };
+    if (!isAdmin && step > maxStep && stepConfirms[step]) {
+      const ok = await showModal(t(stepConfirms[step]));
       if (!ok) return;
     }
 
@@ -423,9 +435,15 @@
   }
 
   async function showResetModal() {
-    const ok = await showModal("Segur que voleu tornar a començar?", "Sí, reiniciar", "Cancel·lar");
+    const ok = await showModal(t("confirmReset"), t("modalResetConfirm"), t("modalResetCancel"));
     if (ok) hardReset();
   }
+
+  // --- Language selector ---
+  document.getElementById("lang-select").addEventListener("change", (e) => {
+    setLang(e.target.value);
+    updateUI();
+  });
 
   // --- Code input ---
   const codeBoxes = [0,1,2,3].map(i => document.getElementById(`code-${i}`));
@@ -449,7 +467,7 @@
     const errorEl = document.getElementById("code-error");
 
     if (entered.some(isNaN)) {
-      errorEl.textContent = "Introduïu les 4 xifres!";
+      errorEl.textContent = t("codeMissing");
       errorEl.className = "code-error error";
       return;
     }
@@ -466,7 +484,7 @@
       if (attempts >= MAX_ATTEMPTS) {
         updateUI();
       } else {
-        const msg = FAIL_HINT_MESSAGES[attempts - 1] || "Codi incorrecte!";
+        const msg = attempts === 1 ? t("failHint1") : t("failHint2");
         errorEl.textContent = msg;
         errorEl.className = attempts === MAX_ATTEMPTS - 1 ? "code-error error shake warning" : "code-error error shake";
         setTimeout(() => errorEl.classList.remove("shake"), 500);
@@ -490,7 +508,7 @@
 
     const toggleBtn = document.getElementById("btn-toggle-solution");
     if (toggleBtn) {
-      toggleBtn.textContent = showFull ? "Veure com a jugador" : "Veure solució";
+      toggleBtn.textContent = showFull ? t("btnToggleSolution") : t("btnToggleSolutionAlt");
     }
   }
 
@@ -515,7 +533,6 @@
   document.querySelectorAll(".camera-card .camera-img").forEach(img => {
     img.addEventListener("click", () => {
       if (!isDesktop.matches) return;
-      // Use the large version for lightbox
       lightboxImg.src = img.src.replace("-sm.", "-lg.");
       lightbox.classList.add("visible");
     });
