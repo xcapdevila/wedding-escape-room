@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>On és el seating plan? — Casament Xavier & Meritxell</title>
+<link rel="stylesheet" href="crossword-styles.css">
+</head>
+<body>
+
+<div class="admin-banner">MODE ORGANITZADORS</div>
+
+<!-- Custom Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-text" id="modal-text"></p>
+    <div class="modal-buttons">
+      <button class="modal-btn secondary" id="modal-cancel">Encara no</button>
+      <button class="modal-btn primary" id="modal-confirm">Endavant!</button>
+    </div>
+  </div>
+</div>
+
+<!-- Top bar: title + reset -->
+<div class="top-bar">
+  <div>
+    <h1>ON ÉS EL SEATING PLAN?</h1>
+    <p class="subtitle">Casament Xavier & Meritxell · 25 d'abril de 2026</p>
+  </div>
+  <button class="btn-reset" onclick="showResetModal()" title="Tornar a començar">↺</button>
+</div>
+
+<!-- Progress dots -->
+<div class="progress-bar" id="progress-bar">
+  <div class="progress-dot active" data-step="0"></div>
+  <div class="progress-line"></div>
+  <div class="progress-dot" data-step="1"></div>
+  <div class="progress-line"></div>
+  <div class="progress-dot" data-step="2"></div>
+  <div class="progress-line"></div>
+  <div class="progress-dot" data-step="3"></div>
+  <div class="progress-line"></div>
+  <div class="progress-dot" data-step="4"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓ 1: ELS LLADRES                                         -->
+<!-- ============================================================ -->
+<section class="game-section" id="step-0">
+  <div class="mascots">
+    <!-- Placeholder: substituir per iframe YouTube quan hi hagi vídeo -->
+    <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
+    <img src="bruna-brutus-mel.png" alt="Els sospitosos" class="mascots-photo">
+    <p class="mascots-caption"><b>Mel</b> 🦮 · <b>Bruna</b> 🐱 · <b>Brutus</b> 🐶</p>
+  </div>
+
+  <button class="btn-continue" onclick="goToStep(1)">Continuar →</button>
+</section>
+
+<!-- Admin separator -->
+<hr class="admin-separator admin-only">
+
+<!-- ============================================================ -->
+<!-- SECCIÓ 2: MOTS ENCREUATS                                      -->
+<!-- ============================================================ -->
+<section class="game-section" id="step-1">
+  <div class="section-header">
+    <h2>Resoleu els mots encreuats</h2>
+  </div>
+  <p class="section-intro">Fixeu-vos bé en tots els detalls.</p>
+
+  <div class="controls admin-only">
+    <button class="btn" id="btn-toggle-solution" onclick="toggleSolution()">Veure com a jugador</button>
+  </div>
+
+  <div class="grid-wrapper">
+    <div class="grid-container" id="crossword-grid"></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch green"></div><span>Verd<span class="admin-only" style="display:inline"> (Mel) = 3</span></span></div>
+    <div class="legend-item"><div class="legend-swatch blue"></div><span>Blau<span class="admin-only" style="display:inline"> (Bruna) = 9</span></span></div>
+    <div class="legend-item"><div class="legend-swatch red"></div><span>Vermell<span class="admin-only" style="display:inline"> (Brutus) = 8</span></span></div>
+  </div>
+
+  <div class="clues-section" id="clues-container"></div>
+
+  <button class="btn-continue" onclick="goToStep(2)">Continuar →</button>
+</section>
+
+<!-- Admin separator -->
+<hr class="admin-separator admin-only">
+
+<!-- ============================================================ -->
+<!-- SECCIÓ 3: CÀMERES DE SEGURETAT                                -->
+<!-- ============================================================ -->
+<section class="game-section" id="step-2">
+  <div class="section-header">
+    <h2>Càmeres de seguretat</h2>
+  </div>
+  <p class="section-intro">Les càmeres del recinte han captat moviment sospitós la nit del 24 d'abril...</p>
+
+  <div class="cameras-grid">
+    <!-- UI order SHUFFLED — NO cronològic! -->
+    <div class="camera-card">
+      <div class="camera-img-placeholder">🐾🐱</div>
+      <div class="camera-timestamp">24/04/2026 — 23:12</div>
+    </div>
+    <div class="camera-card">
+      <div class="camera-img-placeholder">🐾🐶</div>
+      <div class="camera-timestamp">24/04/2026 — 22:04</div>
+    </div>
+    <div class="camera-card">
+      <div class="camera-img-placeholder camera-number">5</div>
+      <div class="camera-timestamp">24/04/2026 — 22:37</div>
+    </div>
+    <div class="camera-card">
+      <div class="camera-img-placeholder">🐾🦮</div>
+      <div class="camera-timestamp">24/04/2026 — 22:51</div>
+    </div>
+  </div>
+
+  <p class="admin-only" style="margin-top:12px; font-size:0.82em; color:#888; text-align:center;">
+    ⚠️ ADMIN: Nit del 24/04/2026 (vigília del casament). Fotos SENSE ordre cronològic a la UI.<br><br>
+    <b>Ordre cronològic → codi:</b><br>
+    22:04 → petjades <span style="color:#ef5350">Brutus 🐶 (vermell)</span> = <b>8</b><br>
+    22:37 → número <span style="color:#e9a945">5</span> visible a la foto = <b>5</b><br>
+    22:51 → petjades <span style="color:#4caf50">Mel 🦮 (verd)</span> = <b>3</b><br>
+    23:12 → petjades <span style="color:#42a5f5">Bruna 🐱 (blau)</span> = <b>9</b><br><br>
+    <b>Codi final: 8 - 5 - 3 - 9</b><br><br>
+    📸 PENDENT: Substituir placeholders per fotos reals amb petjades de cada mascota<br>
+    i una foto on es vegi el número 5 (a la paret, terra, porta, etc.)
+  </p>
+
+  <button class="btn-continue" onclick="goToStep(3)">Continuar →</button>
+</section>
+
+<!-- Admin separator -->
+<hr class="admin-separator admin-only">
+
+<!-- ============================================================ -->
+<!-- SECCIÓ 4: PISTA FINAL + INPUT CODI                            -->
+<!-- ============================================================ -->
+<section class="game-section" id="step-3">
+  <div class="step-3-content" id="step-3-content">
+    <div class="section-header">
+      <h2>L'últim pas</h2>
+    </div>
+
+    <div class="camera-card camera-card-final">
+      <div class="camera-img-placeholder camera-final">🔒📷</div>
+      <div class="camera-timestamp">24/04/2026 — 23:55</div>
+    </div>
+
+    <div class="code-input-section" id="code-input-section">
+      <p class="code-input-label">Introduïu el codi:</p>
+      <div class="code-input-boxes">
+        <input type="number" class="code-box" id="code-0" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+        <input type="number" class="code-box" id="code-1" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+        <input type="number" class="code-box" id="code-2" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+        <input type="number" class="code-box" id="code-3" min="0" max="9" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+      </div>
+      <button class="btn-continue" id="btn-check-code" onclick="checkCode()">Obrir 🔓</button>
+      <p class="code-attempts" id="code-attempts"></p>
+      <p class="code-error" id="code-error"></p>
+    </div>
+  </div>
+
+  <!-- Lockout screen -->
+  <div class="lockout-screen" id="lockout-screen" style="display:none;">
+    <div class="lockout-icon">🚨</div>
+    <h2 class="lockout-title">Alarma activada!</h2>
+    <p class="lockout-text">Heu superat els 3 intents permesos.<br>El sistema de seguretat s'ha activat i ha reiniciat totes les proves.</p>
+    <button class="btn-continue" onclick="hardReset()">Tornar a començar</button>
+  </div>
+
+  <p class="admin-only" style="margin-top:12px; font-size:0.82em; color:#888; text-align:center;">
+    ⚠️ ADMIN: Foto estil càmera de seguretat del lloc on s'amaga l'objecte amb el cadenat de 4 xifres (<b>8-5-3-9</b>).<br>
+    📸 PENDENT: Fer la foto del lloc real i substituir el placeholder.
+  </p>
+</section>
+
+<!-- Admin separator -->
+<hr class="admin-separator admin-only">
+
+<!-- ============================================================ -->
+<!-- SECCIÓ 5: VICTORIA!                                            -->
+<!-- ============================================================ -->
+<section class="game-section" id="step-4">
+  <div class="victory-screen">
+    <div class="victory-icon">🎉</div>
+    <h2 class="victory-title">Heu recuperat el seating plan!</h2>
+    <p class="victory-subtitle" style="font-size:1.1em;">Aneu cap als nuvis i tots junts, a la de 3, crideu ben fort:</p>
+    <div class="secret-word">CUQUIS</div>
+    <p class="victory-footer">Gràcies per jugar! ❤️💍</p>
+  </div>
+</section>
+
+<!-- Admin separator -->
+<hr class="admin-separator admin-only">
+
+<!-- ============================================================ -->
+<!-- ADMIN-ONLY: Detalls del codi                                  -->
+<!-- ============================================================ -->
+<div class="org-section admin-only">
+  <h3>CODI SECRET (4 XIFRES)</h3>
+  <p style="font-size:0.82em; color:#888; margin-bottom:8px;">
+    3 xifres surten dels mots encreuats (colors). La 4a xifra (5) es veu directament a una foto de les càmeres.<br>
+    L'ordre el determina l'hora de cada càmera (cronològic).
+  </p>
+  <div class="code-digits">
+    <div class="code-digit red">8</div>
+    <div class="code-digit mystery">5</div>
+    <div class="code-digit green">3</div>
+    <div class="code-digit blue">9</div>
+  </div>
+  <div class="org-detail">
+    <b>1a xifra — VERMELL (Brutus, 🐶 5 mesos):</b> caselles vermelles mostren lletres <b>V, U, I, T</b><br>
+    &nbsp;&nbsp;Desendreçat: els jugadors veuran les 4 lletres repartides per la graella i han de deduir que formen <b>VUIT = 8</b><br>
+    &nbsp;&nbsp;<span style="color:#666">V de LLUVIA · U de TURISTAS · I de MIGUEL · T de ORXATA</span><br><br>
+
+    <b>2a xifra — CÀMERA:</b> El número <b>5</b> es veu directament a la foto de les 22:37.<br>
+    &nbsp;&nbsp;Ha de ser visible a la foto: número a la paret, porta, terra, etc.<br><br>
+
+    <b>3a xifra — VERD (Mel, 🦮 11 anys):</b> caselles verdes mostren lletres <b>T, R, E, S</b><br>
+    &nbsp;&nbsp;Desendreçat: han de deduir que formen <b>TRES = 3</b><br>
+    &nbsp;&nbsp;<span style="color:#666">T de FRAKTAL · R de RECAREDO · E de PAYMENTS · S de MASELLA</span><br><br>
+
+    <b>4a xifra — BLAU (Bruna, 🐱 17 anys):</b> caselles blaves mostren lletres <b>N, O, U</b><br>
+    &nbsp;&nbsp;Desendreçat: han de deduir que formen <b>NOU = 9</b><br>
+    &nbsp;&nbsp;<span style="color:#666">N de AMAZON∩VALENCIA · O de BARRANQUILLO∩MOJITO · U de CAZUELITA∩GUIX</span>
+  </div>
+</div>
+
+<div class="org-section admin-only">
+  <h3>DISTRIBUCIÓ DE CASELLES DE COLOR</h3>
+  <div class="org-detail">
+    Cada casella de color pertany a una paraula diferent (cap paraula té 2+ caselles de color).<br>
+    Total: 4 verdes + 3 blaves + 4 vermelles = 11 caselles de color entre 23 paraules.<br>
+    En mode organitzador les caselles de color es mostren pre-omplertes per facilitar la revisió.
+  </div>
+</div>
+
+<div class="org-section admin-only">
+  <h3>HINTS DE LA GRAELLA</h3>
+  <div class="org-detail">
+    Dificultat fixada al 70% (30% de lletres visibles, seed 2026, determinístic).<br>
+    Regles: màx 2 lletres per paraula (màx 1 si paraula ≤ 5 lletres). Caselles de color mai pre-omplertes.<br>
+    Mateixa distribució sempre — no canvia entre càrregues.
+  </div>
+</div>
+
+<script src="crossword-data.js"></script>
+<script src="crossword-render.js"></script>
+<script>
+  const STORAGE_KEY_STEP = "escaperoom-maxstep";
+  const STORAGE_KEY_ATTEMPTS = "escaperoom-attempts";
+  const TOTAL_STEPS = 5;
+  const SECRET_CODE = [8, 5, 3, 9];
+  const MAX_ATTEMPTS = 3;
+
+  // Confirmation messages when advancing sections
+  const STEP_CONFIRM_MESSAGES = {
+    1: "Ja heu vist el vídeo que us han deixat els sospitosos?",
+    2: "Heu acabat els mots encreuats i sabeu què amaguen les caselles de color?",
+    3: "Us heu fixat bé en tots els detalls de les càmeres? Ja sabeu què mostren?",
+  };
+
+  // Messages shown between failed code attempts
+  const FAIL_HINT_MESSAGES = [
+    "Codi incorrecte! Segur que heu revisat bé les caselles de color i les càmeres de seguretat?",
+    "Codi incorrecte! Últim intent... Potser hauríeu de tornar a repassar les pistes anteriors.",
+  ];
+
+  // --- Custom Modal ---
+  const modalOverlay = document.getElementById("modal-overlay");
+  const modalText = document.getElementById("modal-text");
+  const modalConfirm = document.getElementById("modal-confirm");
+  const modalCancel = document.getElementById("modal-cancel");
+
+  function showModal(text, confirmLabel, cancelLabel) {
+    return new Promise(resolve => {
+      modalText.textContent = text;
+      modalConfirm.textContent = confirmLabel || "Endavant!";
+      modalCancel.textContent = cancelLabel || "Encara no";
+      modalCancel.style.display = cancelLabel === null ? "none" : "inline-block";
+      modalOverlay.classList.add("visible");
+
+      function cleanup() {
+        modalOverlay.classList.remove("visible");
+        modalConfirm.removeEventListener("click", onConfirm);
+        modalCancel.removeEventListener("click", onCancel);
+      }
+      function onConfirm() { cleanup(); resolve(true); }
+      function onCancel() { cleanup(); resolve(false); }
+
+      modalConfirm.addEventListener("click", onConfirm);
+      modalCancel.addEventListener("click", onCancel);
+    });
+  }
+
+  // Detect admin mode via ?secret=cuqui
+  const params = new URLSearchParams(window.location.search);
+  const isAdmin = params.get("secret") === "cuquis";
+  if (isAdmin) {
+    document.body.classList.add("admin-mode");
+    try {
+      localStorage.removeItem(STORAGE_KEY_STEP);
+      localStorage.removeItem(STORAGE_KEY_ATTEMPTS);
+    } catch(e) {}
+  }
+
+  // --- Navigation ---
+  let maxStep = 0;
+  let viewStep = 0;
+  let attempts = 0;
+  try {
+    const savedStep = parseInt(localStorage.getItem(STORAGE_KEY_STEP));
+    if (!isNaN(savedStep) && savedStep >= 0 && savedStep < TOTAL_STEPS) maxStep = savedStep;
+    const savedAttempts = parseInt(localStorage.getItem(STORAGE_KEY_ATTEMPTS));
+    if (!isNaN(savedAttempts)) attempts = savedAttempts;
+  } catch(e) {}
+  viewStep = maxStep;
+
+  function updateUI() {
+    if (isAdmin) {
+      document.getElementById("progress-bar").style.display = "none";
+      for (let i = 0; i < TOTAL_STEPS; i++) {
+        const el = document.getElementById(`step-${i}`);
+        if (el) el.classList.add("section-active");
+      }
+      document.querySelectorAll(".btn-continue").forEach(b => b.style.display = "none");
+      document.getElementById("code-input-section").style.display = "none";
+      document.getElementById("lockout-screen").style.display = "none";
+      reRender();
+      return;
+    }
+
+    for (let i = 0; i < TOTAL_STEPS; i++) {
+      const el = document.getElementById(`step-${i}`);
+      if (el) el.classList.toggle("section-active", i === viewStep);
+    }
+
+    document.querySelectorAll(".progress-dot").forEach(dot => {
+      const s = parseInt(dot.dataset.step);
+      dot.classList.toggle("active", s === viewStep);
+      dot.classList.toggle("done", s <= maxStep && s !== viewStep);
+      dot.classList.toggle("clickable", s <= maxStep && s !== viewStep);
+    });
+    document.querySelectorAll(".progress-line").forEach((line, idx) => {
+      line.classList.toggle("done", idx < maxStep + 1);
+    });
+
+    if (viewStep === 1) reRender();
+
+    const isLockout = viewStep === 3 && attempts >= MAX_ATTEMPTS;
+
+    document.querySelector(".btn-reset").style.display = isLockout ? "none" : "";
+    document.getElementById("progress-bar").style.display = (viewStep === 4 || isLockout) ? "none" : "flex";
+
+    // Show remaining attempts
+    const attemptsEl = document.getElementById("code-attempts");
+    if (attemptsEl && viewStep === 3 && attempts > 0 && attempts < MAX_ATTEMPTS) {
+      const remaining = MAX_ATTEMPTS - attempts;
+      attemptsEl.textContent = `Intents restants: ${remaining}`;
+      attemptsEl.className = remaining === 1 ? "code-attempts warning" : "code-attempts";
+    } else if (attemptsEl) {
+      attemptsEl.textContent = "";
+    }
+
+    // Show lockout if attempts exhausted
+    if (isLockout) {
+      document.getElementById("step-3-content").style.display = "none";
+      document.getElementById("lockout-screen").style.display = "block";
+    }
+  }
+
+  async function goToStep(step) {
+    if (step < 0 || step >= TOTAL_STEPS) return;
+
+    // Player mode: custom modal before advancing to a NEW step
+    if (!isAdmin && step > maxStep && STEP_CONFIRM_MESSAGES[step]) {
+      const ok = await showModal(STEP_CONFIRM_MESSAGES[step]);
+      if (!ok) return;
+    }
+
+    if (step > maxStep) {
+      maxStep = step;
+      try { localStorage.setItem(STORAGE_KEY_STEP, maxStep); } catch(e) {}
+    }
+    viewStep = step;
+    updateUI();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.querySelectorAll(".progress-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      if (attempts >= MAX_ATTEMPTS) return;
+      const s = parseInt(dot.dataset.step);
+      if (s <= maxStep) {
+        viewStep = s;
+        updateUI();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  });
+
+  function hardReset() {
+    try {
+      localStorage.removeItem(STORAGE_KEY_STEP);
+      localStorage.removeItem(STORAGE_KEY_ATTEMPTS);
+    } catch(e) {}
+    location.reload();
+  }
+
+  async function showResetModal() {
+    const ok = await showModal("Segur que voleu tornar a començar?", "Sí, reiniciar", "Cancel·lar");
+    if (ok) hardReset();
+  }
+
+  // --- Code input ---
+  const codeBoxes = [0,1,2,3].map(i => document.getElementById(`code-${i}`));
+
+  codeBoxes.forEach((box, idx) => {
+    box.addEventListener("input", () => {
+      const val = box.value.replace(/[^0-9]/g, "");
+      box.value = val.slice(-1);
+      if (val && idx < 3) codeBoxes[idx + 1].focus();
+    });
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && !box.value && idx > 0) {
+        codeBoxes[idx - 1].focus();
+      }
+      if (e.key === "Enter") checkCode();
+    });
+  });
+
+  function checkCode() {
+    const entered = codeBoxes.map(b => parseInt(b.value));
+    const errorEl = document.getElementById("code-error");
+
+    if (entered.some(isNaN)) {
+      errorEl.textContent = "Introduïu les 4 xifres!";
+      errorEl.className = "code-error error";
+      return;
+    }
+
+    if (entered.every((v, i) => v === SECRET_CODE[i])) {
+      errorEl.textContent = "";
+      attempts = 0;
+      try { localStorage.removeItem(STORAGE_KEY_ATTEMPTS); } catch(e) {}
+      goToStep(4);
+    } else {
+      attempts++;
+      try { localStorage.setItem(STORAGE_KEY_ATTEMPTS, attempts); } catch(e) {}
+
+      if (attempts >= MAX_ATTEMPTS) {
+        updateUI();
+      } else {
+        const msg = FAIL_HINT_MESSAGES[attempts - 1] || "Codi incorrecte!";
+        errorEl.textContent = msg;
+        errorEl.className = attempts === MAX_ATTEMPTS - 1 ? "code-error error shake warning" : "code-error error shake";
+        setTimeout(() => errorEl.classList.remove("shake"), 500);
+        codeBoxes.forEach(b => b.value = "");
+        codeBoxes[0].focus();
+        updateUI();
+      }
+    }
+  }
+
+  // --- Crossword ---
+  let showFull = isAdmin;
+
+  function reRender() {
+    renderGrid("crossword-grid", {
+      showLetters: showFull,
+      showNumbers: true,
+      showColorLetters: showFull && isAdmin,
+    });
+    renderClues("clues-container", showFull && isAdmin);
+
+    const toggleBtn = document.getElementById("btn-toggle-solution");
+    if (toggleBtn) {
+      toggleBtn.textContent = showFull ? "Veure com a jugador" : "Veure solució";
+    }
+  }
+
+  function toggleSolution() {
+    showFull = !showFull;
+    reRender();
+  }
+
+  // Fix admin-only inline spans
+  if (!isAdmin) {
+    document.querySelectorAll('.admin-only[style*="inline"]').forEach(el => {
+      el.style.display = "none";
+    });
+  }
+
+  // Init
+  updateUI();
+</script>
+
+</body>
+</html>
