@@ -262,7 +262,7 @@ body:not(.admin-mode) .admin-only { display: none; }
   font-weight: 400;
   font-family: 'Segoe UI', sans-serif;
 }
-.cell.hint-letter { color: #666; }
+.cell.hint-letter { color: #fff; }
 
 /* ---- LEGEND ---- */
 .legend {
