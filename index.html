@@ -18,6 +18,15 @@
   <img id="lightbox-img" src="" alt="">
 </div>
 
+<!-- Audio modal -->
+<div class="audio-overlay" id="audio-overlay">
+  <button class="lightbox-close" id="audio-close">&times;</button>
+  <div class="audio-container">
+    <p class="audio-modal-label">🔊</p>
+    <audio id="audio-player" src="audio/bruna-brutus-mel.mp3" controls preload="metadata"></audio>
+  </div>
+</div>
+
 <!-- Video modal -->
 <div class="video-overlay" id="video-overlay">
   <button class="lightbox-close" id="video-close">&times;</button>
@@ -77,9 +86,8 @@
     <p class="mascots-caption"><b>Mel</b> 🦮 · <b>Bruna</b> 🐱 · <b>Brutus</b> 🐶</p>
   </div>
 
-  <a href="#" onclick="openVideo(); return false;" class="btn-video" data-i18n="btnVideo">Veure vídeo ▶</a>
-  <a href="#" onclick="toggleAudio(); return false;" class="btn-video btn-audio" id="btn-audio" data-i18n="btnAudio">Escoltar àudio 🔊</a>
-  <audio id="audio-player" src="audio/bruna-brutus-mel.mp3" preload="none"></audio>
+  <a href="#" onclick="openVideo(); return false;" class="btn-video" data-i18n="btnVideo">Veure missatge 🎬</a>
+  <a href="#" onclick="openAudio(); return false;" class="btn-video btn-audio" data-i18n="btnAudio">Escoltar missatge 🔊</a>
   <button class="btn-continue" onclick="goToStep(1)">Continuar →</button>
 </section>
 
@@ -567,25 +575,27 @@
     videoOverlay.classList.remove("visible");
     videoIframe.src = "";
   }
-
-  // --- Audio player ---
-  const audioPlayer = document.getElementById("audio-player");
-  const btnAudio = document.getElementById("btn-audio");
-  function toggleAudio() {
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      btnAudio.classList.add("playing");
-    } else {
-      audioPlayer.pause();
-      btnAudio.classList.remove("playing");
-    }
-  }
-  audioPlayer.addEventListener("ended", () => {
-    btnAudio.classList.remove("playing");
-  });
   videoClose.addEventListener("click", closeVideo);
   videoOverlay.addEventListener("click", (e) => {
     if (e.target === videoOverlay) closeVideo();
+  });
+
+  // --- Audio modal ---
+  const audioOverlay = document.getElementById("audio-overlay");
+  const audioPlayer = document.getElementById("audio-player");
+  const audioClose = document.getElementById("audio-close");
+
+  function openAudio() {
+    audioOverlay.classList.add("visible");
+    audioPlayer.play();
+  }
+  function closeAudio() {
+    audioPlayer.pause();
+    audioOverlay.classList.remove("visible");
+  }
+  audioClose.addEventListener("click", closeAudio);
+  audioOverlay.addEventListener("click", (e) => {
+    if (e.target === audioOverlay) closeAudio();
   });
 
   // Init

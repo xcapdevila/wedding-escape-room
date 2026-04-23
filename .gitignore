@@ -1,0 +1,6 @@
+
+# Print / PDF generation (local only)
+crossword-print-a2.html
+generate-pdf.js
+crossword-a2.pdf
+node_modules/
