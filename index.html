@@ -111,7 +111,7 @@
     <div class="grid-container" id="crossword-grid"></div>
   </div>
 
-  <div class="legend">
+  <div class="legend admin-only">
     <div class="legend-item"><div class="legend-swatch green"></div><span data-i18n="legendGreen">Verd</span><span class="admin-only" style="display:inline"> (Mel) = 3</span></div>
     <div class="legend-item"><div class="legend-swatch blue"></div><span data-i18n="legendBlue">Blau</span><span class="admin-only" style="display:inline"> (Bruna) = 9</span></div>
     <div class="legend-item"><div class="legend-swatch red"></div><span data-i18n="legendRed">Vermell</span><span class="admin-only" style="display:inline"> (Brutus) = 8</span></div>
@@ -334,11 +334,6 @@
   const params = new URLSearchParams(window.location.search);
   const isAdmin = params.get("secret") === "cuquis";
 
-  // Early access gate — remove this block after the wedding
-  if (!isAdmin && !params.has("early_access")) {
-    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;color:#666;font-family:system-ui;text-align:center;padding:20px;"><p style="font-size:1.2em;">' + t("pageUnavailable") + '</p></div>';
-    throw new Error("early_access required");
-  }
   if (isAdmin) {
     document.body.classList.add("admin-mode");
     try {
