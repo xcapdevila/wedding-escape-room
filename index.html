@@ -119,6 +119,41 @@
 
   <div class="clues-section" id="clues-container"></div>
 
+  <div class="org-section admin-only">
+    <h3>DISTRIBUCIÓ DE CASELLES DE COLOR</h3>
+    <div class="org-detail">
+      Cada casella de color pertany a una paraula diferent (cap paraula té 2+ caselles de color).<br>
+      Total: 4 verdes + 3 blaves + 4 vermelles = 11 caselles de color entre 23 paraules.<br>
+      En mode organitzador les caselles de color es mostren pre-omplertes per facilitar la revisió.
+    </div>
+  </div>
+
+  <div class="org-section admin-only">
+    <h3>HINTS DE LA GRAELLA</h3>
+    <div class="org-detail">
+      Dificultat fixada al 70% (30% de lletres visibles, seed 2026, determinístic).<br>
+      Regles: màx 2 lletres per paraula (màx 1 si paraula ≤ 5 lletres). Caselles de color mai pre-omplertes.<br>
+      Mateixa distribució sempre — no canvia entre càrregues.
+    </div>
+  </div>
+
+  <div class="org-section admin-only">
+    <h3>XIFRES AMAGADES A LES CASELLES DE COLOR</h3>
+    <div class="org-detail">
+      <b>VERMELL (Brutus, 🐶 5 mesos):</b> caselles vermelles mostren lletres <b>V, U, I, T</b><br>
+      &nbsp;&nbsp;Desendreçat: els jugadors veuran les 4 lletres repartides per la graella i han de deduir que formen <b>VUIT = 8</b><br>
+      &nbsp;&nbsp;<span style="color:#666">V de LLUVIA · U de TURISTAS · I de MIGUEL · T de ORXATA</span><br><br>
+
+      <b>VERD (Mel, 🦮 11 anys):</b> caselles verdes mostren lletres <b>T, R, E, S</b><br>
+      &nbsp;&nbsp;Desendreçat: han de deduir que formen <b>TRES = 3</b><br>
+      &nbsp;&nbsp;<span style="color:#666">T de FRAKTAL · R de RECAREDO · E de PAYMENTS · S de MASELLA</span><br><br>
+
+      <b>BLAU (Bruna, 🐱 17 anys):</b> caselles blaves mostren lletres <b>N, O, U</b><br>
+      &nbsp;&nbsp;Desendreçat: han de deduir que formen <b>NOU = 9</b><br>
+      &nbsp;&nbsp;<span style="color:#666">N de AMAZON∩VALENCIA · O de BARRANQUILLO∩MOJITO · U de CAZUELITA∩GUIX</span>
+    </div>
+  </div>
+
   <button class="btn-continue" onclick="goToStep(2)">Continuar →</button>
 </section>
 
@@ -201,9 +236,26 @@
     <button class="btn-continue" onclick="hardReset()" data-i18n="lockoutBtn">Tornar a començar</button>
   </div>
 
-  <p class="admin-only" style="margin-top:12px; font-size:0.82em; color:#888; text-align:center;">
-    ⚠️ ADMIN: Els sospitosos custodiant el maletí que conté la clau per recuperar el seating plan. Codi: <b>8-5-3-9</b>
-  </p>
+  <div class="org-section admin-only">
+    <h3>CODI SECRET (4 XIFRES)</h3>
+    <p style="font-size:0.82em; color:#888; margin-bottom:8px;">
+      3 xifres surten dels mots encreuats (colors). La 4a xifra (5) es veu directament a una foto de les càmeres.<br>
+      L'ordre el determina l'hora de cada càmera (cronològic).
+    </p>
+    <div class="code-digits">
+      <div class="code-digit red">8</div>
+      <div class="code-digit mystery">5</div>
+      <div class="code-digit green">3</div>
+      <div class="code-digit blue">9</div>
+    </div>
+    <div class="org-detail">
+      <b>22:04 → Brutus (vermell) → VUIT = 8</b><br>
+      <b>22:37 → Càmera → número 5 visible a la foto</b><br>
+      <b>22:51 → Mel (verd) → TRES = 3</b><br>
+      <b>23:12 → Bruna (blau) → NOU = 9</b><br><br>
+      Detalls de cada xifra: vegeu secció mots encreuats (colors) i càmeres (ordre cronològic).
+    </div>
+  </div>
 </section>
 
 <!-- Admin separator -->
@@ -230,54 +282,6 @@
 <!-- ============================================================ -->
 <!-- ADMIN-ONLY: Detalls del codi                                  -->
 <!-- ============================================================ -->
-<div class="org-section admin-only">
-  <h3>CODI SECRET (4 XIFRES)</h3>
-  <p style="font-size:0.82em; color:#888; margin-bottom:8px;">
-    3 xifres surten dels mots encreuats (colors). La 4a xifra (5) es veu directament a una foto de les càmeres.<br>
-    L'ordre el determina l'hora de cada càmera (cronològic).
-  </p>
-  <div class="code-digits">
-    <div class="code-digit red">8</div>
-    <div class="code-digit mystery">5</div>
-    <div class="code-digit green">3</div>
-    <div class="code-digit blue">9</div>
-  </div>
-  <div class="org-detail">
-    <b>1a xifra — VERMELL (Brutus, 🐶 5 mesos):</b> caselles vermelles mostren lletres <b>V, U, I, T</b><br>
-    &nbsp;&nbsp;Desendreçat: els jugadors veuran les 4 lletres repartides per la graella i han de deduir que formen <b>VUIT = 8</b><br>
-    &nbsp;&nbsp;<span style="color:#666">V de LLUVIA · U de TURISTAS · I de MIGUEL · T de ORXATA</span><br><br>
-
-    <b>2a xifra — CÀMERA:</b> El número <b>5</b> es veu directament a la foto de les 22:37.<br>
-    &nbsp;&nbsp;Ha de ser visible a la foto: número a la paret, porta, terra, etc.<br><br>
-
-    <b>3a xifra — VERD (Mel, 🦮 11 anys):</b> caselles verdes mostren lletres <b>T, R, E, S</b><br>
-    &nbsp;&nbsp;Desendreçat: han de deduir que formen <b>TRES = 3</b><br>
-    &nbsp;&nbsp;<span style="color:#666">T de FRAKTAL · R de RECAREDO · E de PAYMENTS · S de MASELLA</span><br><br>
-
-    <b>4a xifra — BLAU (Bruna, 🐱 17 anys):</b> caselles blaves mostren lletres <b>N, O, U</b><br>
-    &nbsp;&nbsp;Desendreçat: han de deduir que formen <b>NOU = 9</b><br>
-    &nbsp;&nbsp;<span style="color:#666">N de AMAZON∩VALENCIA · O de BARRANQUILLO∩MOJITO · U de CAZUELITA∩GUIX</span>
-  </div>
-</div>
-
-<div class="org-section admin-only">
-  <h3>DISTRIBUCIÓ DE CASELLES DE COLOR</h3>
-  <div class="org-detail">
-    Cada casella de color pertany a una paraula diferent (cap paraula té 2+ caselles de color).<br>
-    Total: 4 verdes + 3 blaves + 4 vermelles = 11 caselles de color entre 23 paraules.<br>
-    En mode organitzador les caselles de color es mostren pre-omplertes per facilitar la revisió.
-  </div>
-</div>
-
-<div class="org-section admin-only">
-  <h3>HINTS DE LA GRAELLA</h3>
-  <div class="org-detail">
-    Dificultat fixada al 70% (30% de lletres visibles, seed 2026, determinístic).<br>
-    Regles: màx 2 lletres per paraula (màx 1 si paraula ≤ 5 lletres). Caselles de color mai pre-omplertes.<br>
-    Mateixa distribució sempre — no canvia entre càrregues.
-  </div>
-</div>
-
 <script src="js/i18n.js"></script>
 <script src="js/data.js"></script>
 <script src="js/render.js"></script>
@@ -333,6 +337,16 @@
   // Detect admin mode via ?secret=cuquis
   const params = new URLSearchParams(window.location.search);
   const isAdmin = params.get("secret") === "cuquis";
+
+  // Post-wedding gate — without ?post_wedding, show thank-you landing
+  if (!isAdmin && !params.has("post_wedding")) {
+    document.querySelectorAll('body > *:not(script):not(link)').forEach(el => el.style.display = 'none');
+    const ty = document.createElement('div');
+    ty.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;width:100%;';
+    ty.innerHTML = '<p style="font-size:4em;margin-bottom:0.1em;">🫶🏼🫶🏼🫶🏼</p><h1 style="font-size:2.4em;color:#e94560;margin:0 0 0.3em;letter-spacing:1px;">Gràcies per ser-hi!</h1><p style="font-size:4em;margin:0;">💝💝💝</p>';
+    document.body.appendChild(ty);
+    throw new Error("post_wedding required");
+  }
 
   if (isAdmin) {
     document.body.classList.add("admin-mode");

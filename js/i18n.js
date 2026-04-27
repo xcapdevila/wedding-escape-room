@@ -19,7 +19,7 @@ const I18N = {
 
     // Section 2
     crosswordTitle: "Resoleu els mots encreuats",
-    crosswordIntro: "Fixeu-vos bé en tots els detalls. Teniu els mots encreuats en format físic per facilitar-vos la feina. Si us encalleu, premeu 🔍 al costat de cada definició per obtenir una pista.",
+    crosswordIntro: "Fixeu-vos bé en tots els detalls. Els mots encreuats <b>no es poden resoldre a la app</b> — per això teniu el suport en format físic. Si us encalleu, premeu 🔍 al costat de cada definició per obtenir una pista.",
     cluesHorizontal: "HORITZONTALS",
     cluesVertical: "VERTICALS",
     legendGreen: "Verd",
@@ -82,7 +82,7 @@ const I18N = {
 
     // Section 2
     crosswordTitle: "Resolved el crucigrama",
-    crosswordIntro: "Fijaos bien en todos los detalles. Tenéis el crucigrama en formato físico para facilitaros la tarea. Si os atascáis, pulsad 🔍 junto a cada definición para obtener una pista.",
+    crosswordIntro: "Fijaos bien en todos los detalles. El crucigrama <b>no se puede resolver en la app</b> — por eso tenéis el soporte en formato físico. Si os atascáis, pulsad 🔍 junto a cada definición para obtener una pista.",
     cluesHorizontal: "HORIZONTALES",
     cluesVertical: "VERTICALES",
     legendGreen: "Verde",
@@ -211,7 +211,7 @@ const CLUES_I18N = {
     { word: "LLUVIA", wordLang: "es",
       ca: "Inclemència meteorològica que es dona quan ens ajuntem (excepte si anem a un \"resort\")",
       es: "Inclemencia meteorológica que se da cuando nos juntamos (excepto si vamos a un \"resort\")",
-      hint: "Pablo Mitjans" },
+      hint: "Javier Pérez o Rebeca Jerez" },
     { word: "FARRU", wordLang: "ca",
       ca: "Personatge que regenta el bar més xungo de tot Manresa",
       es: "Personaje que regenta el bar más chungo de todo Manresa",
